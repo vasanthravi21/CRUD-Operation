@@ -48,13 +48,52 @@ public class dbPro {
 				city = str.nextLine();
 				
 				qry = "insert into users(NAME,AGE,CITY) VALUES (?,?,?)";
+				st = con.prepareStatement(qry);
+				
+				st.setString(1,name);
+				st.setInt(2, age);
+				st.setString(3, city);
+				st.executeUpdate();
+				System.out.println("Data Insert Success");
 				
 				break;
 			case 2:
-				System.out.println("2. Updated");
+				System.out.println("2. Updating a data");
+				
+				System.out.println("Enter ID: ");
+				id = in.nextInt();
+				System.out.println("Enter Name: ");
+				name = str.nextLine();
+				System.out.println("Enter Age: ");
+				age = in.nextInt();
+				System.out.println("Enter City: ");
+				city= str.nextLine();
+				
+				qry="update users set NAME=?,AGE=?,CITY=? where ID=?";
+				
+				st = con.prepareStatement(qry);
+				
+				st.setString(1, name);
+				st.setInt(2, age);
+				st.setString(3, city);
+				st.setInt(4, id);
+				st.executeUpdate();
+				System.out.println("Data Updated Successfully");
+				
 				break;
 			case 3:
 				System.out.println("3. Deleted");
+				
+				System.out.println("Enter ID: ");
+				id=in.nextInt();
+				
+				qry = "delete from users where ID=?";
+				st = con.prepareStatement(qry);
+				st.setInt(1, id);
+				
+				st.executeUpdate();
+				System.out.println("Data Deleted Success");
+				
 				break;
 			case 4:
 				System.out.println("4. print all Records");
